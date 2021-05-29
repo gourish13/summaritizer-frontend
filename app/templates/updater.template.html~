@@ -1,0 +1,6 @@
+<div class="section" ng-hide="$ctrl.loaded">
+  <div class="loader-wrapper">
+    <div class="loader is-loading"></div>
+  </div>
+</div>
+<create-form></create-form>

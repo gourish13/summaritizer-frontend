@@ -1,0 +1,4 @@
+<div class="loader-wrapper" ng-hide="$ctrl.loaded">
+<div class="loader is-loading"></div>
+</div>
+<update-form></update-form>
