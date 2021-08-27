@@ -1,0 +1,2 @@
+/update/* /#!/update/:splat 200
+/view/* /#!/view/:splat 200
