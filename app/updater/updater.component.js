@@ -46,9 +46,7 @@ angular.module("updater").component("updateForm", {
                 self.loaded = true;
             })
             .catch(console.log);
-	
-	//simpleMdE.setValue("# Hello, Gopal");
-	
+
 	this.anyFieldEmpty = function() {
 	    return (
 		this.author === "" ||
