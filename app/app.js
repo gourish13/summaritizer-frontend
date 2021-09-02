@@ -11,11 +11,11 @@ angular.module("Summaritizer").config(['$routeProvider', function($routeProvider
 	    template: '<home></home>',
 	    title: "Home"
 	})
-	.when('/view/:id/:uuid', {
+	.when('/view/:id', {
 	    template: '<h1>Viewer</h1>',
 	    title: "View"
 	})
-    .when('/update/:id/:uuid', {
+    .when('/update/:id', {
 	    template: '<update></update>',
 	    title: "Update"
 	})
