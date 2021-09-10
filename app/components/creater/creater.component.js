@@ -1,16 +1,19 @@
 angular.module("creater", [
-    'ngRoute',
     'contentForm',
+    'appFooter'
 ]);
 
 angular.module("creater").component("homeIntro", {
     templateUrl: './app/templates/intro.template.html',
     controller: ['particleJS', function(particleJS) {
-	console.log("In intro controller");
-	particleJS.startParticleMotion();
+        console.log("In intro controller");
+        particleJS.startParticleMotion();
     }]
 });
 
 angular.module("creater").component("home", {
-    template: "<home-intro></home-intro><create-form></create-form>"
+    template: `
+        <home-intro></home-intro>
+        <create-form></create-form>
+        <app-footer></app-footer>`
 })

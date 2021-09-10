@@ -1,8 +1,8 @@
-angular.module('contentForm').service("simpleMdE", function() {
+angular.module('updater').service("simpleMdE", function() {
     var simplemde;
     this.initEditor =  function(element) {
 	simplemde = new SimpleMDE({
-		element: element,
+			element: element,
 	        spellChecker: true,
 	        hideIcons: ["guide"],
 	        renderingConfig: {
@@ -12,6 +12,10 @@ angular.module('contentForm').service("simpleMdE", function() {
 	});
     }
     this.getValue = function() {
-	return simplemde.value();
+		console.log(simplemde.value())
+		return simplemde.value();
+    }
+    this.setValue = function(mdContent) {
+		simplemde.value(mdContent);
     }
 })
