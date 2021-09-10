@@ -1,13 +1,15 @@
 <!DOCTYPE HTML>
-<html ng-app="Summaritizer">
+<html ng-app="Summaritizer" ng-cloak>
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width initial-scale=1.0">
-    <link rel="shortcut icon" type="images/png" href="https://drive.google.com/uc?id=1DqUkS5KPie6Zbfre3Eukl-JGMqG1hA8h">
+    <link rel="shortcut icon" type="images/png" href="./statics/logo.png">
     <title ng-bind="$root.title+' | Summaritizer'"></title>
     <base href="/">
     <!-- Bulma -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.1/css/bulma.min.css">
+    <!--mystyles-->
+    <link rel="stylesheet" type="text/css" href="./statics/main.css">
     <!-- Particle.js -->
     <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
     <!-- Simple Markdown Editor -->
@@ -21,26 +23,21 @@
     <!--AngularJS-->
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular-route.js"></script>
+    <!-- Local AngularJS -->
     <script src="./app/app.js"></script>
-    <script src="./app/creater/creater.component.js"></script>
-    <script src="./app/creater/creater.services.js"></script>
-    <script src="./app/content_form/contentform.component.js"></script>
-    <script src="./app/content_form/contentform.services.js"></script>
-    <script src="./app/updater/updater.component.js"></script>
-    <!--mystuffs-->
-    <link rel="stylesheet" type="text/css" href="./main.css">
+    <script src="./app/components/creater/creater.component.js"></script>
+    <script src="./app/components/creater/creater.services.js"></script>
+    <script src="./app/components/content_form/contentform.component.js"></script>
+    <script src="./app/components/content_form/contentform.services.js"></script>
+    <script src="./app/components/loader/loader.component.js"></script>
+    <script src="./app/components/navbar/navbar.component.js"></script>
+    <script src="./app/components/updater/updater.component.js"></script>
+    <script src="./app/components/updater/updater.services.js"></script>
+    <script src="./app/components/viewer/viewer.component.js"></script>
+    <script src="./app/components/footer/footer.component.js"></script>
+    <!-- Build Bundled AngularJS -->
   </head>
   <body>
     <ng-view></ng-view>
-    <footer class="footer">
-      <div class="content has-text-centered">
-	<p>
-	  <strong>Summaritizer</strong> is built with &#128153;&nbsp;&#128154;</p>
-	<p>It wouldn't have been possible without these awesome projects
-	  <strong><a href="https://github.com/sparksuite/simplemde-markdown-editor">SimpleMDE - Markdown Editor</a>,
-	    <a href="https://github.com/markedjs/marked">Marked</a> & <a href="https://github.com/highlightjs/highlight.js">highlight.js</a></strong>. Make sure to also check these out if you have some time to spare.
-	</p>
-      </div>
-    </footer>
   </body>
 </html>

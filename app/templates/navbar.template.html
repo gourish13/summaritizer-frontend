@@ -1,7 +1,7 @@
 <nav class="navbar is-dark" role="navigation" aria-label="main navigation">
   <div class="navbar-brand">
     <a class="navbar-item" href="/">
-      <img src="https://drive.google.com/uc?id=1DqUkS5KPie6Zbfre3Eukl-JGMqG1hA8h" width="112" height="28">Summaritizer
+      <img src="./statics/logo.png" width="112" height="28">Summaritizer
     </a>
     <a ng-click="$ctrl.toggleNavMenu()" role="button" class="navbar-burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
       <span aria-hidden="true"></span>
@@ -10,9 +10,19 @@
     </a>
   </div>
   <div id="navbarBasicExample" class="navbar-menu">
-    <div class="navbar-start">
-      <a class="navbar-item" ng-click="$ctrl.goToRoute('update')">Update</a>
-      <a class="navbar-item" ng-click="$ctrl.goToRoute('view')">View</a>
+    <div class="navbar-end">
+      <a class="navbar-item" ng-click="$ctrl.goToRoute('/update')">
+        <span>Update</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="pencil-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z" />
+        </svg>
+      </a>
+      <a class="navbar-item" ng-click="$ctrl.goToRoute('/view')">
+        <span>View</span>
+        <svg xmlns="http://www.w3.org/2000/svg" class="view-icon" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+        </svg>
+      </a>
     </div>
   </div>
 </nav>

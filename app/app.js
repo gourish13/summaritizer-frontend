@@ -2,6 +2,7 @@ angular.module("Summaritizer", [
     'ngRoute',
     'creater',
     'updater',
+	'viewer'
 ]);
 
 
@@ -12,23 +13,24 @@ angular.module("Summaritizer").config(['$routeProvider', function($routeProvider
 	    title: "Home"
 	})
 	.when('/view/:id', {
-	    template: '<h1>Viewer</h1>',
+	    template: '<viewer></viewer>',
 	    title: "View"
 	})
     .when('/update/:id', {
 	    template: '<update></update>',
 	    title: "Update"
 	})
-        .otherwise('/');
+	.otherwise('/');
 }]);
 
 
 angular.module("Summaritizer").config(['$locationProvider', function($locationProvider) {
-    $locationProvider.html5Mode(true);
+    // $locationProvider.html5Mode(true);
+    $locationProvider.html5Mode(false);
 }]);
 
 angular.module("Summaritizer").run(['$rootScope', '$route', function($rootScope, $route) {
-    $rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute) {
-	$rootScope.title = $route.current.title;
+		$rootScope.$on("$routeChangeSuccess", function(currentRoute, previousRoute) {
+		$rootScope.title = $route.current.title;
     });
 }]);
