@@ -68,9 +68,8 @@ angular.module("contentForm").component("createForm", {
 					headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
 					data: $httpParamSerializerJQLike(data)
 				};
-				console.log(postreq)
 
-				$http(postreq)
+				$http(postReq)
 					.then(function(response) {
 						$location.path(`/update/${response.data.id}`);
 				})
