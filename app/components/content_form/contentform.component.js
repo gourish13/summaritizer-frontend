@@ -5,12 +5,14 @@ angular.module("contentForm", [
 angular.module("contentForm").component("createForm", {
     templateUrl: './app/templates/form.template.html',
     controller: [
+		'$rootScope',
 		'$element',
 		'$location',
 		'$http',
 		'$httpParamSerializerJQLike',
 		'simpleMdE',
-		function($element, $location, $http, $httpParamSerializerJQLike, simpleMdE) {
+		function($rootScope, $element, $location, 
+					$http, $httpParamSerializerJQLike, simpleMdE) {
 
 			simpleMdE.initEditor($element.find('textarea')[0]);
 			this.author = '';
@@ -64,13 +66,16 @@ angular.module("contentForm").component("createForm", {
 
 				let postReq = {
 					method: 'POST',
-					url: '/create',
+					url: '/api/create',
 					headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
 					data: $httpParamSerializerJQLike(data)
 				};
+				let self = this;
 
 				$http(postReq)
 					.then(function(response) {
+						$rootScope.author = self.author;
+						$rootScope.content = self.content;
 						$location.path(`/update/${response.data.id}`);
 				})
 				.catch(console.log)

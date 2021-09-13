@@ -1,0 +1,7 @@
+<loader loading="$ctrl.loading"></loader>
+<div class="content">
+    <div ng-bind-html="$ctrl.content"></div>
+    <div ng-hide=" $ctrl.author === '' ">
+        <h2 id="author">{{ 'Posted By ' + $ctrl.author }}</h2>
+    </div>
+</div>

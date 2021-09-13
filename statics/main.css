@@ -144,6 +144,17 @@ form .label {
     font-size: 1.3rem;
 }
 
+.editor-toolbar,
+.editor-statusbar,
+.CodeMirror {
+    margin: 0 2rem 0 2rem;
+}
+
+.fullscreen,
+.CodeMirror-fullscreen {
+    margin: 0;
+}
+
 #savebutton {
     width: 68vw;
     margin-left: 15vw;
@@ -162,6 +173,17 @@ form .label {
 
 .update-key {
     width: 30vw;
+}
+
+.content {
+    margin: 2rem 8vw 0 8vw;
+}
+
+#author {
+    margin: 2rem 2rem 2rem 0;
+    display: flex;
+    justify-content: flex-end;
+    color: #4e4e4e;
 }
 
 
@@ -239,4 +261,14 @@ footer {
     .update-key {
         width: 50vw;
     }
+
+    .content {
+        margin: 2rem 1.5vw 0 1.5vw;
+    }
+
+    #author {
+        margin: 2rem 0 2rem 1rem;;
+    }
+
 }
+
