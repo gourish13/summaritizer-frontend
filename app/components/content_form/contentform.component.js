@@ -22,6 +22,7 @@ angular.module("contentForm").component("createForm", {
 			this.update = false;
 			this.msg = "";
 			this.loading = false;
+			this.status = { type: '', msg: '' };
 
 			this.anyFieldEmpty = function() {
 				return (

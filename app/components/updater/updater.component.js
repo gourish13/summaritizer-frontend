@@ -2,6 +2,7 @@ angular.module("updater", [
     'ngRoute',
 	'navbar',
 	'loader',
+	'statusBox',
 	'appFooter'
 ]);
 
@@ -32,6 +33,7 @@ angular.module("updater").component("updateForm", {
 			this.update = true;
 			this.msg = "";
 			this.key = "";
+			this.status = { type: '', msg: '' };
 
 			if (this.author === '' || this.content === '') {
 				let self = this;
@@ -86,6 +88,8 @@ angular.module("updater").component("updateForm", {
 				$rootScope.author = this.author;
 				this.msg = "";
 				this.key = "";
+				this.status.type = 'success';
+				this.status.msg = 'Post successfully updated';
 			}
 
 			this.deleteContent = function() {
