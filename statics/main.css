@@ -57,6 +57,7 @@ nav .navbar-brand {
     box-shadow: 0px 10px 20px rgba(128, 128, 128, 0.5);
 }
 
+
 .page-heading {
     width: 70%;
     height: 20vh;
@@ -71,6 +72,7 @@ nav .navbar-brand {
     font-family: 'RocknRoll One', sans-serif;
 }
 
+
 .page-heading p {
     padding: 0;
     color: #fff;
@@ -80,6 +82,14 @@ nav .navbar-brand {
 
 .page-heading #sub {
     font-size: 2vw;
+}
+
+.page-heading #sub a {
+    color: #22ffff;
+}
+
+.page-heading #sub a:hover {
+    color: rgb(43, 255, 90)
 }
 
 .page-heading #sub span {
@@ -220,7 +230,7 @@ footer {
 
 @media screen and (max-width: 991px) {
     #particles-js {
-	height: 50vh;
+	height: 60vh;
     }
     .page-heading {
 	margin-top: 10vh;
@@ -229,7 +239,7 @@ footer {
 
 @media screen and (max-width: 768px) {
     #particles-js {
-	height: 40vh;
+	height: 50vh;
     }
     .page-heading {
 	margin-top: 5vh;

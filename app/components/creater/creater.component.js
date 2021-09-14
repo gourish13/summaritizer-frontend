@@ -6,7 +6,6 @@ angular.module("creater", [
 angular.module("creater").component("homeIntro", {
     templateUrl: './app/templates/intro.template.html',
     controller: ['particleJS', function(particleJS) {
-        console.log("In intro controller");
         particleJS.startParticleMotion();
     }]
 });

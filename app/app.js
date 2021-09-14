@@ -2,7 +2,8 @@ angular.module("Summaritizer", [
     'ngRoute',
     'creater',
     'updater',
-	'viewer'
+	'viewer',
+	'missing'
 ]);
 
 
@@ -11,6 +12,10 @@ angular.module("Summaritizer").config(['$routeProvider', function($routeProvider
 	.when('/', {
 	    template: '<home></home>',
 	    title: "Home"
+	})
+	.when('/missing', {
+		template: '<missing></missing>',
+		title: 'Not Found'
 	})
 	.when('/view/:id', {
 	    template: '<viewer></viewer>',
