@@ -8,10 +8,11 @@ angular.module("contentForm").component("createForm", {
 		'$rootScope',
 		'$element',
 		'$location',
+		'$window',
 		'$http',
 		'$httpParamSerializerJQLike',
 		'simpleMdE',
-		function($rootScope, $element, $location, 
+		function($rootScope, $element, $location, $window,
 					$http, $httpParamSerializerJQLike, simpleMdE) {
 
 			simpleMdE.initEditor($element.find('textarea')[0]);
@@ -22,7 +23,12 @@ angular.module("contentForm").component("createForm", {
 			this.update = false;
 			this.msg = "";
 			this.loading = false;
-			this.status = { type: '', msg: '' };
+			if ($rootScope.status !== undefined) {
+				this.status = $rootScope.status;
+				$window.scrollTo(0, 0);
+			}
+			else
+				this.status = { type: '', msg: '' };
 
 			this.anyFieldEmpty = function() {
 				return (
@@ -57,13 +63,14 @@ angular.module("contentForm").component("createForm", {
 					return
 				}
 				this.msg = "";
+				this.loading = true;
 
 				let data = {};
 				data.author = this.author;
 				data.hours = this.hours;
 				data.minutes = this.minutes;
 				data.email = this.email;
-				data.content = simpleMdE.getValue();
+				this.content = data.content = simpleMdE.getValue();
 
 				let postReq = {
 					method: 'POST',
@@ -77,9 +84,14 @@ angular.module("contentForm").component("createForm", {
 					.then(function(response) {
 						$rootScope.author = self.author;
 						$rootScope.content = self.content;
-						$location.path(`/update/${response.data.id}`);
-				})
-				.catch(console.log)
+						$location.path(`/view/${response.data.id}`);
+					})
+					.catch(function(response) {
+						self.status.type = 'danger';
+						self.status.msg = 'Couldn\'t connect to the server';
+						$window.scrollTo(0, 0);
+						self.loading = false;
+					})
 			}
     	}
 	]

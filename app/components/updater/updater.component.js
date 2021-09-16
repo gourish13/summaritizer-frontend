@@ -19,11 +19,12 @@ angular.module("updater").component("updateForm", {
 		'$rootScope',
 		'$element',
 		'$location',
+		'$window',
 		'$http',
 		'$routeParams',
 		'$httpParamSerializerJQLike',
 		'simpleMdE', 
-		function($rootScope, $element, $location, $http,
+		function($rootScope, $element, $location, $window, $http,
 				$routeParams, $httpParamSerializerJQLike, simpleMdE) {
 
 			this.loading = true;
@@ -34,6 +35,7 @@ angular.module("updater").component("updateForm", {
 			this.msg = "";
 			this.key = "";
 			this.status = { type: '', msg: '' };
+			$rootScope.status = undefined;
 
 			if (this.author === '' || this.content === '') {
 				let self = this;
@@ -46,9 +48,10 @@ angular.module("updater").component("updateForm", {
 							simpleMdE.setValue(response.data.content);
 							self.loading = false;
 						})
-						.catch(function(error) {
-							console.log(error);
-							self.loading = false;
+						.catch(function(response) {
+							console.log(response);
+							if (response.status === 404)
+								$location.path('/missing');
 						});
 			}
 			else {
@@ -84,17 +87,78 @@ angular.module("updater").component("updateForm", {
 					this.msg = "No new content to update";
 					return;
 				}
-				$rootScope.content = this.content = content;
-				$rootScope.author = this.author;
+
+				this.loading = true;
+				let data = {};
+				data.author = this.author;
+				data.content = content;
+				data.key = this.key;
+
 				this.msg = "";
 				this.key = "";
-				this.status.type = 'success';
-				this.status.msg = 'Post successfully updated';
+				let self = this;
+
+				$http({
+					method: 'POST',
+					url: `/api/update/${$routeParams.id}`,
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+					data: $httpParamSerializerJQLike(data)
+				})
+					.then(function(response) {
+						if (response.status === 201) {
+							$rootScope.content = self.content = content;
+							$rootScope.author = self.author;
+							self.status.type = 'success';
+							self.status.msg = response.data;
+						}
+						self.loading = false;
+						$window.scrollTo(0, 0);
+					})
+					.catch(function(response) {
+						if (response.status === 403 || response.status === 406) {
+							self.status.type = 'danger';
+							self.status.msg = response.data;
+						}
+						self.loading = false;
+						$window.scrollTo(0, 0);
+					});
 			}
 
 			this.deleteContent = function() {
-				if (this.key === "") return;
-				$location.path('/');
+				if (this.key === "")
+					return;
+
+				this.loading = true;
+				let data = {};
+				data.key = this.key;
+				this.key = '';
+				let self = this;
+
+				$http({
+					method: 'POST',
+					url: `/api/delete/${$routeParams.id}`,
+					headers: { 'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8' },
+					data: $httpParamSerializerJQLike(data)
+				})
+					.then(function(response) {
+						console.log(response)
+						if (response.status === 200) {
+							$rootScope.content = '';
+							$rootScope.author = '';
+							$rootScope.status = {};
+							$rootScope.status.type = 'success';
+							$rootScope.status.msg = response.data;
+						}
+						$location.path('/');
+					})
+					.catch(function(response) {
+						if (response.status === 403 || response.status === 406) {
+							self.status.type = 'danger';
+							self.status.msg = response.data;
+						}
+						self.loading = false;
+						$window.scrollTo(0, 0);
+					});
 			}
 		}
 	],

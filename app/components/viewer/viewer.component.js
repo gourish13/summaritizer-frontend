@@ -15,7 +15,6 @@ angular.module('viewer').component('viewer', {
 
 angular.module('viewer').component('contentViewer', {
 	templateUrl: './app/templates/viewer.template.html',
-	// template: '<loader loading="$ctrl.loading"></loader><div ng-bind-html="$ctrl.content"></div>',
 	controller: [
 		'$rootScope',
 		'$routeParams',
@@ -26,9 +25,28 @@ angular.module('viewer').component('contentViewer', {
 			this.loading = true;
 			this.author = $rootScope.author ? $rootScope.author : "";
 			this.content = $rootScope.content ? $rootScope.content : "";
-			this.content = compiler.compileContent(this.content);
 			
-			this.loading = false;
+			if (this.author === '' || this.content === '') {
+				let self = this;
+				$http.get(`/api/read/${$routeParams.id}`)
+						.then(function(response) {
+							self.author = response.data.author;
+							$rootScope.author = response.data.author;
+							self.content = response.data.content;
+							$rootScope.content = response.data.content;
+							self.content = compiler.compileContent(self.content);
+							self.loading = false;
+						})
+					.catch(function(response) {
+						console.log(response);
+						if (response.status === 404)
+							$location.path('/missing');
+					});
+			}
+			else {
+				this.content = compiler.compileContent(this.content);
+				this.loading = false;
+			}
 		}
 	]
 })
