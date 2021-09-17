@@ -17,10 +17,11 @@ angular.module('viewer').component('contentViewer', {
 	templateUrl: './app/templates/viewer.template.html',
 	controller: [
 		'$rootScope',
+		"$location",
 		'$routeParams',
 		'$http',
 		'compiler',
-		function($rootScope, $routeParams, $http, compiler) {
+		function($rootScope, $location, $routeParams, $http, compiler) {
 
 			this.loading = true;
 			this.author = $rootScope.author ? $rootScope.author : "";
